@@ -305,7 +305,9 @@ CGFloat angleBetweenLines(CGPoint line1Start, CGPoint line1End, CGPoint line2Sta
 - (UIImageView *)scaleImageView {
     if (!_scaleImageView) {
         _scaleImageView = [[UIImageView alloc] init];
-        _scaleImageView.image = [UIImage imageNamed:@"yn_rotatescale_icon_magnify"];
+        NSString *budlePath = [[NSBundle mainBundle] pathForResource:@"RSimage" ofType:@"bundle"];
+        NSString *imgPath = [budlePath stringByAppendingPathComponent:@"yn_rotatescale_icon_magnify"];
+        _scaleImageView.image = [UIImage imageWithContentsOfFile:imgPath];
         _scaleImageView.layer.shadowColor = [UIColor blackColor].CGColor;
         _scaleImageView.layer.shadowOffset = CGSizeZero;
         _scaleImageView.layer.shadowRadius = 4;
@@ -320,7 +322,9 @@ CGFloat angleBetweenLines(CGPoint line1Start, CGPoint line1End, CGPoint line2Sta
 - (UIImageView *)deleteImageView {
     if (!_deleteImageView) {
         _deleteImageView = [[UIImageView alloc] init];
-        _deleteImageView.image = [UIImage imageNamed:@"yn_rotatescale_icon_close"];
+        NSString *budlePath = [[NSBundle mainBundle] pathForResource:@"RSimage" ofType:@"bundle"];
+        NSString *imgPath = [budlePath stringByAppendingPathComponent:@"yn_rotatescale_icon_close"];
+        _deleteImageView.image = [UIImage imageWithContentsOfFile:imgPath];
         _deleteImageView.layer.shadowColor = [UIColor blackColor].CGColor;
         _deleteImageView.layer.shadowOffset = CGSizeZero;
         _deleteImageView.layer.shadowRadius = 4;
