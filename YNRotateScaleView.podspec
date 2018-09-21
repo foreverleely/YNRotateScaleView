@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "YNRotateScaleView"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "YNRotateScaleView"
 
   # This description is used to generate tags and improve search results.
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/YNRotateScaleView.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/foreverleely/YNRotateScaleView.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
