@@ -17,6 +17,7 @@
 		B44230202154C7B3003B72E0 /* RotateScaleViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B442301F2154C7B3003B72E0 /* RotateScaleViewDemoTests.m */; };
 		B442302B2154C7B3003B72E0 /* RotateScaleViewDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B442302A2154C7B3003B72E0 /* RotateScaleViewDemoUITests.m */; };
 		B442303B2154C957003B72E0 /* YNRotateScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B442303A2154C957003B72E0 /* YNRotateScaleView.m */; };
+		B4A86ABB2154F75300E5C05E /* RSimage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4A86ABA2154F75300E5C05E /* RSimage.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B442302C2154C7B3003B72E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B44230392154C957003B72E0 /* YNRotateScaleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNRotateScaleView.h; sourceTree = "<group>"; };
 		B442303A2154C957003B72E0 /* YNRotateScaleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNRotateScaleView.m; sourceTree = "<group>"; };
+		B4A86ABA2154F75300E5C05E /* RSimage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RSimage.bundle; sourceTree = "<group>"; };
 		C89DCEF261E09C1746EDA052 /* Pods-RotateScaleViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotateScaleViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RotateScaleViewDemo/Pods-RotateScaleViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 				B44230112154C7B3003B72E0 /* LaunchScreen.storyboard */,
 				B44230142154C7B3003B72E0 /* Info.plist */,
 				B44230152154C7B3003B72E0 /* main.m */,
+				B4A86ABA2154F75300E5C05E /* RSimage.bundle */,
 			);
 			path = RotateScaleViewDemo;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4A86ABB2154F75300E5C05E /* RSimage.bundle in Resources */,
 				B44230132154C7B3003B72E0 /* LaunchScreen.storyboard in Resources */,
 				B44230102154C7B3003B72E0 /* Assets.xcassets in Resources */,
 				B442300E2154C7B2003B72E0 /* Main.storyboard in Resources */,
