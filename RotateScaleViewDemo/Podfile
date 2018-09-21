@@ -1,0 +1,12 @@
+platform :ios, '9.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+
+target 'RotateScaleViewDemo' do
+    platform :ios, '9.0'
+    
+    # 第三方库
+    pod 'Masonry'
+
+end
