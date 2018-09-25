@@ -11,7 +11,8 @@
 @interface YNRotateScaleView : UIView
 
 - (instancetype)initWithImageName:(NSString *)imgName
-                      borderColor:(UIColor *)bordercolor;
+                      borderColor:(UIColor *)bordercolor
+                    scaleImgWidth:(CGFloat)imgWidth;
 
 // 当前视图是否可旋转缩放删除，是否有虚线边框
 @property (nonatomic, assign) BOOL canEdit;

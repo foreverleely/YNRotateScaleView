@@ -14,6 +14,10 @@
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #endif
 
+#ifndef TARGETED_DEVICE_IS_IPAD
+#define TARGETED_DEVICE_IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#endif
+
 @interface YNRotateScaleView()
 
 @property (nonatomic, strong) UIImageView *viewImgV;
@@ -21,6 +25,8 @@
 @property (nonatomic, strong) UIColor *borderColor;
 
 /*** sacle rotate ***/
+// 缩放旋转删除图片的宽
+@property (nonatomic, assign) CGFloat imgWidth;
 
 // 缩放旋转删除图片
 @property (nonatomic, strong) UIImageView *scaleImageView;
@@ -42,12 +48,14 @@
 @implementation YNRotateScaleView
 
 - (instancetype)initWithImageName:(NSString *)imgName
-                      borderColor:(UIColor *)bordercolor {
+                      borderColor:(UIColor *)bordercolor
+                    scaleImgWidth:(CGFloat)imgWidth {
     
     self = [super initWithFrame:CGRectZero];
     if (self) {
         self.viewImgV.image = [UIImage imageNamed:imgName];
         self.borderColor = bordercolor;
+        self.imgWidth = imgWidth;
         
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(contentPanGestureHanele:)];
         [self addGestureRecognizer:pan];
@@ -66,17 +74,17 @@
     [self addSubview:self.viewImgV];
     self.viewImgV.frame = CGRectMake(0, 0, 100 * xRate, 100 * xRate);
     
-    CGRect rect = CGRectMake(4.5, 4.5, 100 * xRate - 18, 100 * xRate - 18);
+    CGRect rect = CGRectMake(self.imgWidth/4, self.imgWidth/4, 100 * xRate - self.imgWidth, 100 * xRate - self.imgWidth);
     
     self.viewBorder.path = [UIBezierPath bezierPathWithRect:rect].CGPath;
     self.viewBorder.frame = rect;
     [self.layer addSublayer:self.viewBorder];
     
     [self addSubview:self.scaleImageView];
-    self.scaleImageView.frame = CGRectMake(100 * xRate - 18, 100 * xRate - 18, 18, 18);
+    self.scaleImageView.frame = CGRectMake(100 * xRate - self.imgWidth, 100 * xRate - self.imgWidth, self.imgWidth, self.imgWidth);
     
     [self addSubview:self.deleteImageView];
-    self.deleteImageView.frame = CGRectMake(0, 0, 18, 18);
+    self.deleteImageView.frame = CGRectMake(0, 0, self.imgWidth, self.imgWidth);
     
 }
 
@@ -95,7 +103,7 @@
     }
     // 点击缩放按钮区域无效
     CGPoint inScaleImgVPoint = [panGesture locationInView:self.scaleImageView];
-    if ((inScaleImgVPoint.x > 0 && inScaleImgVPoint.x < 18) || (inScaleImgVPoint.y > 0 && inScaleImgVPoint.y < 18)) {
+    if ((inScaleImgVPoint.x > 0 && inScaleImgVPoint.x < self.imgWidth) || (inScaleImgVPoint.y > 0 && inScaleImgVPoint.y < self.imgWidth)) {
         return;
     }
     
@@ -193,14 +201,23 @@
     CGFloat width = self.beforeOringalBounds.size.width + percentOffX;
     CGFloat height = self.beforeOringalBounds.size.height + percentOffY;
     
-    CGFloat minWH = 50;
+    // limit the scale size
+    CGFloat minWH = 100.f;
+    CGFloat maxWH = TARGETED_DEVICE_IS_IPAD ? 600.f : 300.f;
     CGFloat realWidth = 0;
     CGFloat realHeight = 0;
     realWidth = width > minWH ? width : minWH;
     realHeight = height > minWH ? height : minWH;
+    realWidth = realWidth > maxWH ? maxWH : realWidth;
+    realHeight = realHeight > maxWH ? maxWH : realHeight;
     if (realWidth == minWH) {
         realHeight = realWidth/width * height;
     } else if (realHeight == minWH){
+        realWidth = realHeight/height * width;
+    }
+    if (realWidth == maxWH) {
+        realHeight = realWidth/width * height;
+    } else if (realHeight == maxWH){
         realWidth = realHeight/height * width;
     }
     
@@ -214,12 +231,12 @@
     self.viewImgV.frame = CGRectMake(0, 0, realWidth, realHeight);
     
     // update border
-    CGRect rect = CGRectMake(4.5f, 4.5f, realWidth - 18, realHeight - 18);
+    CGRect rect = CGRectMake(self.imgWidth/4, self.imgWidth/4, realWidth - self.imgWidth, realHeight - self.imgWidth);
     
     self.viewBorder.path = [UIBezierPath bezierPathWithRect:rect].CGPath;
     self.viewBorder.frame = rect;
     
-    self.scaleImageView.frame = CGRectMake(realWidth - 18, realHeight - 18, 18, 18);
+    self.scaleImageView.frame = CGRectMake(realWidth - self.imgWidth, realHeight - self.imgWidth, self.imgWidth, self.imgWidth);
 }
 
 - (void)rotateHandle {

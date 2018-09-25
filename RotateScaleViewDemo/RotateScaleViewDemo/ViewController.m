@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor cyanColor];
     
-    YNRotateScaleView *rsView = [[YNRotateScaleView alloc] initWithImageName:@"yn_rotatescale_view_img" borderColor:[UIColor whiteColor]];
+    YNRotateScaleView *rsView = [[YNRotateScaleView alloc] initWithImageName:@"yn_rotatescale_view_img" borderColor:[UIColor whiteColor] scaleImgWidth:18.f];
     rsView.canEdit = YES;
     [self.view addSubview:rsView];
     [rsView mas_makeConstraints:^(MASConstraintMaker *make) {
